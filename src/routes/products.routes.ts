@@ -1,6 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { createNewProduct, getProduct, listProducts, updateExistingProduct, deleteExistingProduct } from "../controllers/products.controller";
-import { authenticate } from "../middlewares/auth.middleware";
+import { createNewProduct, deleteExistingProduct, getProduct, listProducts, updateExistingProduct } from "../controllers/products.controller";
 import { requireAdmin } from "../middlewares/admin.middleware";
 import { CreateProduct, UpdateProduct } from "../types";
 
@@ -9,8 +8,8 @@ export default async function productRoutes(fastify: FastifyInstance) {
 		"/",
 		{
 			schema: {
-				tags: ["Products"],
 				description: "Lista produtos com filtros opcionais",
+				tags: ["Products"],
 				response: {
 					200: {
 						description: "Lista de produtos",
@@ -89,8 +88,8 @@ export default async function productRoutes(fastify: FastifyInstance) {
 		"/:id",
 		{
 			schema: {
-				tags: ["Products"],
 				description: "Obter um produto pelo ID",
+				tags: ["Products"],
 				params: {
 					type: "object",
 					properties: {
@@ -160,8 +159,7 @@ export default async function productRoutes(fastify: FastifyInstance) {
 		{
 			onRequest: [requireAdmin], // Requer autenticação + role ADMIN
 			schema: {
-				tags: ["Products"],
-				description: "Criar um novo produto",
+				description: "Criar novo produto",
 				body: {
 					type: "object",
 					required: ["name", "description", "price", "categoryId"],
@@ -223,7 +221,6 @@ export default async function productRoutes(fastify: FastifyInstance) {
 		{
 			onRequest: [requireAdmin], // Requer autenticação + role ADMIN
 			schema: {
-				tags: ["Products"],
 				description: "Atualizar produto",
 				security: [{ bearerAuth: [] }],
 				params: {
@@ -304,7 +301,6 @@ export default async function productRoutes(fastify: FastifyInstance) {
 		{
 			onRequest: [requireAdmin], // Requer autenticação + role ADMIN
 			schema: {
-				tags: ["Products"],
 				description: "Deletar um produto",
 				params: {
 					type: "object",
