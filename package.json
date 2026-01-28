@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/app.ts",
+    "dev": "tsx watch src/index.ts",
     "build": "tsx",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "prisma:generate": "prisma generate --schema=prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate dev --schema=prisma/schema.prisma",
+    "prisma:studio": "prisma studio --schema=prisma/schema.prisma",
+    "prisma:seed": "tsx prisma/seed.ts"
   },
   "repository": {
     "type": "git",
@@ -22,11 +26,13 @@
   "dependencies": {
     "@fastify/cors": "^11.2.0",
     "@fastify/helmet": "^13.0.2",
+    "@prisma/client": "^5.7.1",
     "dotenv": "^17.2.3",
     "fastify": "^5.7.2"
   },
   "devDependencies": {
     "@types/node": "^25.0.10",
+    "prisma": "^5.7.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
