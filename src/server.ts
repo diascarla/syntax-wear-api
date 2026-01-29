@@ -6,7 +6,7 @@ const startServer = async () => {
 	const app = await buildApp();
 
 	try {
-		await app.listen({ port: PORT });
+		await app.listen({ port: PORT, host: '0.0.0.0' });
 		console.log(`🚀 Server running at http://localhost:${PORT}`);
 		console.log(`📚 API Docs at http://localhost:${PORT}/api-docs`);
 	} catch (err) {
